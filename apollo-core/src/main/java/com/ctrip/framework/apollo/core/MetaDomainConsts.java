@@ -1,11 +1,8 @@
 package com.ctrip.framework.apollo.core;
 
 import com.ctrip.framework.apollo.core.enums.Env;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
+
+import java.util.*;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
@@ -19,7 +16,6 @@ import com.ctrip.framework.apollo.core.utils.ApolloThreadFactory;
 import com.ctrip.framework.apollo.core.utils.NetUtil;
 import com.ctrip.framework.apollo.tracer.Tracer;
 import com.ctrip.framework.apollo.tracer.spi.Transaction;
-import com.ctrip.framework.foundation.internals.ServiceBootstrap;
 import com.google.common.base.Strings;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
@@ -102,7 +98,7 @@ public class MetaDomainConsts {
   }
 
   private static List<MetaServerProvider> initMetaServerProviders() {
-    Iterator<MetaServerProvider> metaServerProviderIterator = ServiceBootstrap.loadAll(MetaServerProvider.class);
+    Iterator<MetaServerProvider> metaServerProviderIterator = loadAll(MetaServerProvider.class);
 
     List<MetaServerProvider> metaServerProviders = Lists.newArrayList(metaServerProviderIterator);
 
@@ -115,6 +111,12 @@ public class MetaDomainConsts {
     });
 
     return metaServerProviders;
+  }
+
+  private static <S> Iterator<S> loadAll(Class<S> clazz) {
+    ServiceLoader<S> loader = ServiceLoader.load(clazz);
+
+    return loader.iterator();
   }
 
   /**
