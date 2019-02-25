@@ -5,7 +5,7 @@
 
 	<groupId>com.ctrip.framework.apollo</groupId>
 	<artifactId>apollo</artifactId>
-	<version>1.0.0</version>
+	<version>1.0.0-SNAPSHOT</version>
 	<name>Apollo</name>
 	<packaging>pom</packaging>
 	<description>Ctrip Configuration Center</description>
@@ -73,6 +73,10 @@
 	</developers>
 
 	<properties>
+		<!-- Maven Release Repository URL -->
+		<releases.repo>http://maven.release.ctripcorp.com/nexus/content/repositories/fxrelease</releases.repo>
+		<!-- Maven Snapshot Repository URL -->
+		<snapshots.repo>http://maven.release.ctripcorp.com/nexus/content/repositories/fxsnapshot</snapshots.repo>
 		<java.version>1.8</java.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<spring-boot.version>1.3.8.RELEASE</spring-boot.version>
